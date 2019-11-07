@@ -1,0 +1,3 @@
+/home/feyil/Desktop/CENG391 Fall 2019/ceng391_03T/build/CMakeFiles/rebuild_cache.dir
+/home/feyil/Desktop/CENG391 Fall 2019/ceng391_03T/build/CMakeFiles/image-test.dir
+/home/feyil/Desktop/CENG391 Fall 2019/ceng391_03T/build/CMakeFiles/edit_cache.dir

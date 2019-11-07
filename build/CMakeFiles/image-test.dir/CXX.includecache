@@ -1,0 +1,34 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/feyil/Desktop/CENG391 Fall 2019/ceng391_03T/image.cc
+image.h
+/home/feyil/Desktop/CENG391 Fall 2019/ceng391_03T/image.h
+iostream
+-
+fstream
+-
+cmath
+-
+
+/home/feyil/Desktop/CENG391 Fall 2019/ceng391_03T/image.h
+string
+-
+util.h
+/home/feyil/Desktop/CENG391 Fall 2019/ceng391_03T/util.h
+
+/home/feyil/Desktop/CENG391 Fall 2019/ceng391_03T/image_test.cc
+cstdlib
+-
+iostream
+-
+image.h
+/home/feyil/Desktop/CENG391 Fall 2019/ceng391_03T/image.h
+
+/home/feyil/Desktop/CENG391 Fall 2019/ceng391_03T/util.h
+
