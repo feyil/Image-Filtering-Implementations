@@ -6,6 +6,24 @@
 
 #IncludeRegexTransform: 
 
+/home/feyil/Desktop/CENG391 Fall 2019/ceng391_03T/buffer.cc
+buffer.h
+/home/feyil/Desktop/CENG391 Fall 2019/ceng391_03T/buffer.h
+iostream
+-
+
+/home/feyil/Desktop/CENG391 Fall 2019/ceng391_03T/buffer.h
+util.h
+/home/feyil/Desktop/CENG391 Fall 2019/ceng391_03T/util.h
+
+/home/feyil/Desktop/CENG391 Fall 2019/ceng391_03T/filter.cc
+filter.h
+/home/feyil/Desktop/CENG391 Fall 2019/ceng391_03T/filter.h
+iostream
+-
+
+/home/feyil/Desktop/CENG391 Fall 2019/ceng391_03T/filter.h
+
 /home/feyil/Desktop/CENG391 Fall 2019/ceng391_03T/image.cc
 image.h
 /home/feyil/Desktop/CENG391 Fall 2019/ceng391_03T/image.h
@@ -21,6 +39,10 @@ string
 -
 util.h
 /home/feyil/Desktop/CENG391 Fall 2019/ceng391_03T/util.h
+buffer.h
+/home/feyil/Desktop/CENG391 Fall 2019/ceng391_03T/buffer.h
+filter.h
+/home/feyil/Desktop/CENG391 Fall 2019/ceng391_03T/filter.h
 
 /home/feyil/Desktop/CENG391 Fall 2019/ceng391_03T/image_test.cc
 cstdlib

@@ -44,6 +44,7 @@ using std::string;
 using std::cos;
 using std::sin;
 
+
 namespace ceng391 {
 
 Image::Image(int width, int height, int n_channels, int step)
@@ -322,6 +323,71 @@ void Image::rotate_centered(Image *rotated, double theta) const
         this->rotate(rotated, theta, tx_cap, ty_cap);
 }
 
+double Image::convolveAt(Buffer* buffer, Filter1D* filter, int convolve_at_index) {
 
+        int filter_size = filter->get_size();
+        int filter_center_index = (filter_size - 1) / 2;
+        int filter_tail = filter_size - filter_center_index;
+
+        double convolution_result = 0;
+
+        for(int i = 0; i < 2; i++) {
+                int sign = 1;
+
+                for(int j = 1; j < filter_tail; j++) {
+                        int offset = sign * j;
+                        convolution_result += filter->value_at(filter_center_index + offset) 
+                                                * buffer->value_at(convolve_at_index + offset);
+                       
+                }
+
+                sign = -1;
+        }
+        convolution_result += filter->value_at(filter_center_index) * buffer->value_at(convolve_at_index);
+       
+        return convolution_result;
+}
+
+void Image::box_filter_x(int n) {
+        Filter1D* filter = new Filter1D(n);
+
+        // Initialize the filter
+        double* filter_data = filter->get_filter();
+        for(int i = 0; i < filter->get_size(); i++) {
+                filter_data[i] = 1.0f / n;
+   
+        }
+
+        Buffer* buffer = new Buffer(w());
+        uchar* buffer_data = buffer->get_buffer();
+        for(int y = 0; y < m_height; y++) {
+                uchar* row_data = data(y);
+                for(int x = 0; x < m_width; x++) {
+                        buffer_data[x] = row_data[x];
+                }
+                
+                for(int i = 0; i < buffer->get_size(); i++) {
+                        double value = convolveAt(buffer, filter, i);
+                        if(value > 255) {
+                                value = 255;
+                        }
+                        else if(value < 0) {
+                                value = 0;
+                        }
+
+                        row_data[i] = value;
+                }
+        }
+
+        delete buffer, filter;
+ }
+
+void Image::box_filter_y(int n) {
+
+}
+
+void Image::box_filter(int n) {
+
+}
 
 }

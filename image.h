@@ -34,6 +34,8 @@
 #include <string>
 
 #include "util.h"
+#include "buffer.h"
+#include "filter.h"
 
 namespace ceng391 {
 
@@ -68,12 +70,19 @@ public:
 
         bool write_pnm(const std::string& filename) const;
         bool read_pnm (const std::string& filename);
+
+        void box_filter_x(int n);
+        void box_filter_y(int n);
+        void box_filter(int n); 
+
 private:
         int m_width;
         int m_height;
         int m_n_channels;
         int m_step;
         uchar* m_data;
+
+        double convolveAt(Buffer* buffer, Filter1D* filter, int convolve_at_index);
 };
 
 }

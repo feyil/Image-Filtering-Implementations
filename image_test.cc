@@ -39,37 +39,14 @@ using ceng391::Image;
 
 int main(int argc, char** argv)
 {
-     //    Image* gray = Image::new_gray(128, 128);
-     //    cout << "(" << gray->w() << "x" << gray->h() << ") channels: "
-     //         << gray->n_ch() << " step: " << gray->step() << endl;
-     //    gray->set_zero();
-     //    gray->set_rect(32, 32, 64, 64, 255);
-     //    gray->write_pnm("/tmp/test_image_gray");
-     //    delete gray;
+     Image* img = new Image(4, 4, 1);
+     img->read_pnm("small_watch.pgm");
+     // img.to_rgb();
+     img->box_filter_x(5);
+     img->write_pnm("test_image_gray2rgb");
 
-     //    Image* rgb = Image::new_rgb(128, 128);
-     //    cout << "(" << rgb->w() << "x" << rgb->h() << ") channels: "
-     //         << rgb->n_ch() << " step: " << rgb->step() << endl;
-     //    rgb->set_zero();
-     //    rgb->set_rect(32, 32, 64, 64, 255, 0, 255);
-     //    rgb->write_pnm("/tmp/test_image_rgb");
-     //    delete rgb;
+     delete img;
 
-     //    Image img(4, 4, 1);
-     //    img.read_pnm("/tmp/test_image_gray.pgm");
-     //    img.to_rgb();
-     //    img.write_pnm("/tmp/test_image_gray2rgb");
-
-     //    img.read_pnm("/tmp/test_image_rgb.ppm");
-     //    img.to_grayscale();
-     //    img.write_pnm("/tmp/test_image_rgb2gray");
-
-     //    img.read_pnm("../small_watch.pgm");
-     //    Image rotated(img.w()*2, img.h()*2, 1);
-     //    double theta = 45.0 * 3.1415926 / 180;
-     //    img.rotate_centered(&rotated, theta);
-     //    rotated.write_pnm("/tmp/small_watch_crotated_45");
-
-        return EXIT_SUCCESS;
+     return EXIT_SUCCESS;
 }
 

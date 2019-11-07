@@ -10,6 +10,7 @@ cd build
 cmake ..
 make
 cd ..
+cp small_watch.pgm build/
 
 
 

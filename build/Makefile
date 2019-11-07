@@ -123,6 +123,60 @@ image-test/fast:
 	$(MAKE) -f CMakeFiles/image-test.dir/build.make CMakeFiles/image-test.dir/build
 .PHONY : image-test/fast
 
+buffer.o: buffer.cc.o
+
+.PHONY : buffer.o
+
+# target to build an object file
+buffer.cc.o:
+	$(MAKE) -f CMakeFiles/image-test.dir/build.make CMakeFiles/image-test.dir/buffer.cc.o
+.PHONY : buffer.cc.o
+
+buffer.i: buffer.cc.i
+
+.PHONY : buffer.i
+
+# target to preprocess a source file
+buffer.cc.i:
+	$(MAKE) -f CMakeFiles/image-test.dir/build.make CMakeFiles/image-test.dir/buffer.cc.i
+.PHONY : buffer.cc.i
+
+buffer.s: buffer.cc.s
+
+.PHONY : buffer.s
+
+# target to generate assembly for a file
+buffer.cc.s:
+	$(MAKE) -f CMakeFiles/image-test.dir/build.make CMakeFiles/image-test.dir/buffer.cc.s
+.PHONY : buffer.cc.s
+
+filter.o: filter.cc.o
+
+.PHONY : filter.o
+
+# target to build an object file
+filter.cc.o:
+	$(MAKE) -f CMakeFiles/image-test.dir/build.make CMakeFiles/image-test.dir/filter.cc.o
+.PHONY : filter.cc.o
+
+filter.i: filter.cc.i
+
+.PHONY : filter.i
+
+# target to preprocess a source file
+filter.cc.i:
+	$(MAKE) -f CMakeFiles/image-test.dir/build.make CMakeFiles/image-test.dir/filter.cc.i
+.PHONY : filter.cc.i
+
+filter.s: filter.cc.s
+
+.PHONY : filter.s
+
+# target to generate assembly for a file
+filter.cc.s:
+	$(MAKE) -f CMakeFiles/image-test.dir/build.make CMakeFiles/image-test.dir/filter.cc.s
+.PHONY : filter.cc.s
+
 image.o: image.cc.o
 
 .PHONY : image.o
@@ -186,6 +240,12 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... image-test"
 	@echo "... edit_cache"
+	@echo "... buffer.o"
+	@echo "... buffer.i"
+	@echo "... buffer.s"
+	@echo "... filter.o"
+	@echo "... filter.i"
+	@echo "... filter.s"
 	@echo "... image.o"
 	@echo "... image.i"
 	@echo "... image.s"
