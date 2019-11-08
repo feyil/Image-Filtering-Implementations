@@ -475,7 +475,8 @@ void Image::smooth(float sigma) {
 }
 
 short* Image::deriv_x() {
-
+        // nearly copy of filter_x, filter_x can support this kind of approach as well.
+        // with result destination parameter.
         Filter1D* filter = Filter1D::create_derivative_filter();
         short* deriv_data = new short[m_step * h()];
 
@@ -501,6 +502,8 @@ short* Image::deriv_x() {
 }
 
 short* Image::deriv_y() {
+        // nearly copy of filter_y, filter_y can support this kind of approach as well.
+        // with result destination parameter.
         Filter1D* filter = Filter1D::create_derivative_filter();
         short* deriv_data = new short[m_step * h()];
         
