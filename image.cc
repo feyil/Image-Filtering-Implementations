@@ -331,11 +331,12 @@ double Image::convolveAt(Buffer* buffer, Filter1D* filter, int convolve_at_index
 
         double convolution_result = 0;
 
+        int sign = 1;
         for(int i = 0; i < 2; i++) {
-                int sign = 1;
 
                 for(int j = 1; j < filter_tail; j++) {
                         int offset = sign * j;
+                     
                         convolution_result += filter->value_at(filter_center_index + offset) 
                                                 * buffer->value_at(convolve_at_index + offset);
                        
@@ -471,6 +472,58 @@ void Image::smooth_y(float sigma) {
 void Image::smooth(float sigma) {
         smooth_x(sigma);
         smooth_y(sigma);
+}
+
+short* Image::deriv_x() {
+
+        Filter1D* filter = Filter1D::create_derivative_filter();
+        short* deriv_data = new short[m_step * h()];
+
+        Buffer* buffer = new Buffer(w());
+        
+        for(int y = 0; y < m_height; y++) {
+                uchar* row_data = data(y);
+                short* row_deriv_data = deriv_data + y * m_step;
+
+                fill_buffer_with_row_data(buffer, row_data);
+                
+                for(int i = 0; i < buffer->get_size(); i++) {
+                        double value = convolveAt(buffer, filter, i);
+                
+                        row_deriv_data[i] = value;
+                }
+        }
+
+        delete buffer;
+        delete filter;
+
+        return deriv_data;
+}
+
+short* Image::deriv_y() {
+        Filter1D* filter = Filter1D::create_derivative_filter();
+        short* deriv_data = new short[m_step * h()];
+        
+        Buffer* buffer = new Buffer(h());
+
+        for(int x = 0; x < m_width; x++) {
+
+                fill_buffer_with_column_data(buffer, x);
+
+                // buffer->get_size() == m_height
+                for(int i = 0; i < buffer->get_size(); i++) {
+                        double value = convolveAt(buffer, filter, i);
+                        
+                        //row_data[x] = column value
+                        short* row_data = deriv_data + i * m_step;
+                        row_data[x] = value;
+                }
+        }
+        
+        delete buffer;
+        delete filter;
+
+        return deriv_data;
 }
 
 }

@@ -79,6 +79,9 @@ public:
         void smooth_y(float sigma);
         void smooth(float sigma);
 
+        short* deriv_x();
+        short* deriv_y();
+
 private:
         int m_width;
         int m_height;

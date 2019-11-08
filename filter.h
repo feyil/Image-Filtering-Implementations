@@ -10,6 +10,7 @@ class Filter1D {
 
         static Filter1D* create_box_filter(int n);
         static Filter1D* create_gaussian_filter(float sigma);
+        static Filter1D* create_derivative_filter();
 
         double value_at(int index);
         int get_size();

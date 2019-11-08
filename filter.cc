@@ -54,6 +54,18 @@ namespace ceng391 {
         return filter;
     }
 
+    Filter1D* Filter1D::create_derivative_filter() {
+
+        Filter1D* filter = new Filter1D(3);
+        double* filter_data = filter->get_filter();
+
+        filter_data[0] = -1;
+        filter_data[1] = 0;
+        filter_data[2] = 1;
+
+        return filter;
+    }
+
     double Filter1D::value_at(int index) {
         return m_filter[index];
     }
