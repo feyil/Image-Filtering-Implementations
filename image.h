@@ -83,6 +83,9 @@ private:
         uchar* m_data;
 
         double convolveAt(Buffer* buffer, Filter1D* filter, int convolve_at_index);
+        void fill_buffer_with_row_data(Buffer* buffer, uchar* row_data);
+        void fill_buffer_with_column_data(Buffer* buffer, int column);
+        double check_boundary_values(double value);
 };
 
 }

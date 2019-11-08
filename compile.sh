@@ -12,5 +12,7 @@ make
 cd ..
 cp small_watch.pgm build/
 
+cd build
+valgrind ./image-test
 
 

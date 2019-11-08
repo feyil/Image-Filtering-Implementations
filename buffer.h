@@ -11,7 +11,7 @@ namespace ceng391 {
             Buffer(int size);
             ~Buffer();
 
-            int value_at(int index);
+            uchar value_at(int index);
             int get_size();
             uchar* get_buffer();
         

@@ -14,6 +14,19 @@ namespace ceng391 {
         delete [] m_filter;
     }
 
+    Filter1D* Filter1D::create_box_filter(int n) {
+        Filter1D* filter = new Filter1D(n);
+
+        // Initialize the filter
+        double* filter_data = filter->get_filter();
+        for(int i = 0; i < filter->get_size(); i++) {
+                filter_data[i] = 1.0f / n;
+   
+        }
+        
+        return filter;
+    }
+
     double Filter1D::value_at(int index) {
         return m_filter[index];
     }

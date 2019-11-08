@@ -13,11 +13,11 @@ namespace ceng391 {
         delete [] m_buffer;
     }
 
-    int Buffer::value_at(int index) {
+    uchar Buffer::value_at(int index) {
         if(index < 0) {
             return m_buffer[0];
         }
-        else if(index > m_size) {
+        else if(index >= m_size) {
             return m_buffer[m_size - 1];
         }
         

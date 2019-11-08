@@ -348,46 +348,98 @@ double Image::convolveAt(Buffer* buffer, Filter1D* filter, int convolve_at_index
         return convolution_result;
 }
 
-void Image::box_filter_x(int n) {
-        Filter1D* filter = new Filter1D(n);
+void Image::fill_buffer_with_row_data(Buffer* buffer, uchar* row_data) {
 
-        // Initialize the filter
-        double* filter_data = filter->get_filter();
-        for(int i = 0; i < filter->get_size(); i++) {
-                filter_data[i] = 1.0f / n;
-   
-        }
-
-        Buffer* buffer = new Buffer(w());
         uchar* buffer_data = buffer->get_buffer();
-        for(int y = 0; y < m_height; y++) {
-                uchar* row_data = data(y);
+
+        if(m_width == buffer->get_size()) {
+                
                 for(int x = 0; x < m_width; x++) {
                         buffer_data[x] = row_data[x];
                 }
+        } 
+        else {
+                cerr<<"Mismatched Buffer"<<endl;
+        }
+}
+
+double Image::check_boundary_values(double value) {
+        if(value > 255) {
+                return 255;
+        }
+        else if(value < 0) {
+                return 0;
+        }
+
+        return value;
+}
+
+void Image::fill_buffer_with_column_data(Buffer* buffer, int column) {
+
+        uchar* buffer_data = buffer->get_buffer();
+
+        if(m_height == buffer->get_size()) {
+
+             for(int y = 0; y < m_height; y++) {
+                        uchar* row_data = data(y);
+                   
+                        //row_data[x] = column value
+                        buffer_data[y] = row_data[column];
+                }  
+        } 
+        else {
+                cerr<<"Mismatched Buffer"<<endl;
+        }  
+}
+
+void Image::box_filter_x(int n) {
+
+        Filter1D* filter = Filter1D::create_box_filter(n);
+        Buffer* buffer = new Buffer(w());
+        
+        for(int y = 0; y < m_height; y++) {
+                uchar* row_data = data(y);
+                fill_buffer_with_row_data(buffer, row_data);
                 
                 for(int i = 0; i < buffer->get_size(); i++) {
                         double value = convolveAt(buffer, filter, i);
-                        if(value > 255) {
-                                value = 255;
-                        }
-                        else if(value < 0) {
-                                value = 0;
-                        }
+                        value = check_boundary_values(value);
 
                         row_data[i] = value;
                 }
         }
 
-        delete buffer, filter;
+        delete buffer;
+        delete filter;
  }
 
 void Image::box_filter_y(int n) {
 
+        Filter1D* filter = Filter1D::create_box_filter(n);
+        Buffer* buffer = new Buffer(h());
+
+        for(int x = 0; x < m_width; x++) {
+
+                fill_buffer_with_column_data(buffer, x);
+
+                // buffer->get_size() == m_height
+                for(int i = 0; i < buffer->get_size(); i++) {
+                        double value = convolveAt(buffer, filter, i);
+                        value = check_boundary_values(value);
+                        
+                        //row_data[x] = column value
+                        uchar* row_data = data(i);
+                        row_data[x] = value;
+                }
+        }
+        
+        delete buffer;
+        delete filter;
 }
 
 void Image::box_filter(int n) {
-
+        box_filter_x(n);
+        box_filter_y(n);
 }
 
 }

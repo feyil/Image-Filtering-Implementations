@@ -8,10 +8,12 @@ class Filter1D {
         Filter1D(int size);
         ~Filter1D();
 
+        static Filter1D* create_box_filter(int n);
+
         double value_at(int index);
         int get_size();
         double* get_filter();
-
+        
     private:
         int m_size;
         double* m_filter;
