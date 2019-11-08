@@ -42,7 +42,7 @@ int main(int argc, char** argv)
      Image* img = new Image(4, 4, 1);
      img->read_pnm("small_watch.pgm");
      // img.to_rgb();
-     img->box_filter(9);
+     img->smooth(1.5f);
      img->write_pnm("test_image_gray2rgb");
 
      delete img;

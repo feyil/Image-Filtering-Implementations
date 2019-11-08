@@ -75,12 +75,19 @@ public:
         void box_filter_y(int n);
         void box_filter(int n); 
 
+        void smooth_x(float sigma);
+        void smooth_y(float sigma);
+        void smooth(float sigma);
+
 private:
         int m_width;
         int m_height;
         int m_n_channels;
         int m_step;
         uchar* m_data;
+
+        void filter_x(Filter1D* filter);
+        void filter_y(Filter1D* filter);
 
         double convolveAt(Buffer* buffer, Filter1D* filter, int convolve_at_index);
         void fill_buffer_with_row_data(Buffer* buffer, uchar* row_data);

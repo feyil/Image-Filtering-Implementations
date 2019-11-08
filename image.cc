@@ -392,9 +392,7 @@ void Image::fill_buffer_with_column_data(Buffer* buffer, int column) {
         }  
 }
 
-void Image::box_filter_x(int n) {
-
-        Filter1D* filter = Filter1D::create_box_filter(n);
+void Image::filter_x(Filter1D* filter) {
         Buffer* buffer = new Buffer(w());
         
         for(int y = 0; y < m_height; y++) {
@@ -410,12 +408,9 @@ void Image::box_filter_x(int n) {
         }
 
         delete buffer;
-        delete filter;
- }
+}
 
-void Image::box_filter_y(int n) {
-
-        Filter1D* filter = Filter1D::create_box_filter(n);
+void Image::filter_y(Filter1D* filter) {
         Buffer* buffer = new Buffer(h());
 
         for(int x = 0; x < m_width; x++) {
@@ -434,12 +429,48 @@ void Image::box_filter_y(int n) {
         }
         
         delete buffer;
+}
+
+void Image::box_filter_x(int n) {
+
+        Filter1D* filter = Filter1D::create_box_filter(n);
+        filter_x(filter);
+        
+        delete filter;
+ }
+
+void Image::box_filter_y(int n) {
+
+        Filter1D* filter = Filter1D::create_box_filter(n);
+        filter_y(filter);
+
         delete filter;
 }
 
 void Image::box_filter(int n) {
         box_filter_x(n);
         box_filter_y(n);
+}
+
+void Image::smooth_x(float sigma) {
+
+        Filter1D* filter = Filter1D::create_gaussian_filter(sigma);
+        filter_x(filter);
+
+        delete filter;
+}
+
+void Image::smooth_y(float sigma) {
+
+        Filter1D* filter = Filter1D::create_gaussian_filter(sigma);
+        filter_y(filter);
+
+        delete filter;
+}
+
+void Image::smooth(float sigma) {
+        smooth_x(sigma);
+        smooth_y(sigma);
 }
 
 }

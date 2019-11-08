@@ -2,6 +2,7 @@
 #include "filter.h"
 
 #include <iostream>
+#include <cmath>
 
 namespace ceng391 {
 
@@ -24,6 +25,32 @@ namespace ceng391 {
    
         }
         
+        return filter;
+    }
+
+    Filter1D* Filter1D::create_gaussian_filter(float sigma) {
+        int l = ceil(sigma * 2);
+        int filter_size = 2 * l + 1;
+     
+        Filter1D* filter = new Filter1D(filter_size);
+        double* filter_data = filter->get_filter();
+
+        double sum = 0;
+        int counter = 0;
+        int x_start = -1 * (filter_size - 1) / 2.0f; 
+        for(int x = x_start; x < -1 * x_start + 1; x++) {
+                double gaussian = exp(-0.5 * (pow(x, 2) / pow(sigma, 2)));
+                sum += gaussian;
+            
+                filter_data[counter] = gaussian;
+                counter += 1;
+        }
+
+        // Normalization
+        for(int i = 0; i < filter_size; i++) {
+                filter_data[i] = filter_data[i] / sum;
+        }
+
         return filter;
     }
 
