@@ -42,7 +42,7 @@ int main(int argc, char** argv)
      Image* img = new Image(4, 4, 1);
      img->read_pnm("small_watch.pgm");
      // img.to_rgb();
-     short* data = img->deriv_y();
+     img->smooth(2.0f);
      img->write_pnm("test_image_gray2rgb");
 
      delete img;
