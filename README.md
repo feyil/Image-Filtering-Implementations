@@ -6,7 +6,7 @@
 
 * (*)README.md file uses some parts of the official Homework Doc to better express the purpose of the Homework.
 
-* All solutions implemented on top of base code.
+* All solutions implemented on top of the base code.
 
 ### Problem*
 
@@ -44,7 +44,7 @@ $ sh compile
 $ ./build/image-test
 ```
 
-* You can play with image_test.cc to get different results. However don't forget to compile whenever you made a change ;)
+* You can play with image_test.cc to get different results. However don't forget to compile whenever you made a change :)
 
 ```C++
 int main(int argc, char** argv)
